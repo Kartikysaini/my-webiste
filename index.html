@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelCraft Studio | We Turn Ideas Into Digital Experiences</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#080E1E',
+              navy: '#0B132B',
+              surface: '#111C3D',
+              surfaceHover: '#16234D',
+              border: 'rgba(255, 255, 255, 0.08)',
+              orange: '#FF6B35',
+              orangeHover: '#F95716',
+              amber: '#F59E0B',
+              muted: '#94A3B8',
+              light: '#F8FAFC'
+            }
+          },
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif']
+          },
+          boxShadow: {
+            'glow-orange': '0 0 25px -3px rgba(255, 107, 53, 0.45)',
+            'glow-card': '0 10px 30px -10px rgba(11, 19, 43, 0.8)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080E1E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF6B35;
+    }
+
+    /* Glassmorphism Classes */
+    .glass-card {
+      background: rgba(17, 28, 61, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-nav {
+      background: rgba(8, 14, 30, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Gradient Background Accents */
+    .hero-glow-1 {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, rgba(255,107,53,0) 70%);
+      top: -100px;
+      right: -80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(30,58,138,0.25) 0%, rgba(30,58,138,0) 70%);
+      bottom: -150px;
+      left: -100px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating WhatsApp pulsing indicator */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .whatsapp-pulse {
+      animation: pulse-ring 2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans selection:bg-brand-orange selection:text-white antialiased overflow-x-hidden">
+
+  <!-- ==================== STICKY HEADER & NAVBAR ==================== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 flex items-center justify-center text-white shadow-glow-orange group-hover:scale-105 transition-transform duration-300">
+            <i class="fa-solid fa-shapes text-lg"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-heading font-extrabold text-xl tracking-tight text-white flex items-center gap-1">
+              PixelCraft<span class="text-brand-orange">.</span>
+            </span>
+            <span class="text-[10px] tracking-widest uppercase font-semibold text-brand-muted -mt-1">Digital Studio</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a href="#services" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">Services</a>
+          <a href="#about" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">About</a>
+          <a href="#portfolio" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">Portfolio</a>
+          <a href="#why-us" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">Why Us</a>
+          <a href="#pricing" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">Pricing</a>
+          <a href="#blog" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">Blog</a>
+          <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200">Contact</a>
+        </nav>
+
+        <!-- CTA & Contact Button -->
+        <div class="hidden sm:flex items-center gap-4">
+          <a href="#contact" class="px-5 py-2.5 rounded-full bg-brand-orange hover:bg-brand-orangeHover text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-glow-orange hover:-translate-y-0.5 flex items-center gap-2">
+            <span>Get a Quote</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 focus:outline-none transition-colors" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars-staggered text-2xl" id="menu-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-brand-border bg-brand-dark/95 backdrop-blur-xl px-4 pt-3 pb-6 transition-all duration-300 shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        <a href="#services" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">Services</a>
+        <a href="#about" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">About Us</a>
+        <a href="#portfolio" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">Portfolio</a>
+        <a href="#why-us" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">Why Choose Us</a>
+        <a href="#pricing" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">Pricing Plans</a>
+        <a href="#blog" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">Articles & Insights</a>
+        <a href="#contact" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-brand-orange hover:bg-slate-800/40">Contact</a>
+        <div class="pt-2">
+          <a href="#contact" class="mobile-nav-link block text-center py-3 rounded-xl bg-brand-orange text-white font-semibold shadow-glow-orange">
+            Start Your Project
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="home" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden flex items-center min-h-[92vh]">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-brand-orange text-xs sm:text-sm font-semibold tracking-wide shadow-sm">
+            <span class="flex h-2 w-2 rounded-full bg-brand-orange animate-ping"></span>
+            <span>Award-Winning Full-Cycle Digital Agency</span>
+          </div>
+
+          <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.15] tracking-tight">
+            We Turn Ideas Into <br class="hidden sm:inline" />
+            <span class="bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">Digital</span>
+            <span class="bg-gradient-to-r from-brand-orange to-amber-400 bg-clip-text text-transparent"> Experiences.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg md:text-xl text-brand-muted max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Elevate your brand with hyper-performant web applications, data-driven SEO growth engines, tailored UI/UX design, and revenue-focused marketing strategies built for modern market leaders.
+          </p>
+
+          <!-- Dual CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orangeHover text-white font-semibold text-center transition-all duration-300 shadow-glow-orange hover:scale-[1.02] flex items-center justify-center gap-3">
+              <span>Book Free Strategy Call</span>
+              <i class="fa-solid fa-calendar-check text-sm"></i>
+            </a>
+            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-slate-200 hover:text-white hover:border-slate-500 font-semibold text-center transition-all duration-300 hover:bg-slate-800/80 flex items-center justify-center gap-2">
+              <span>Explore Recent Work</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Trust Badges / Client Proof -->
+          <div class="pt-6 border-t border-brand-border/60 flex flex-wrap items-center justify-center lg:justify-start gap-y-3 gap-x-8 text-xs uppercase tracking-wider text-slate-400 font-medium">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-shield-check text-brand-orange text-sm"></i> Enterprise Grade Quality</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand-orange text-sm"></i> 99+ Google PageSpeed</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-headset text-brand-orange text-sm"></i> Dedicated PM & Support</span>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Interactive Graphic Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <!-- Main Hero Visual Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl relative border-brand-border overflow-hidden group">
+              <div class="absolute -top-12 -right-12 w-40 h-40 bg-brand-orange/20 rounded-full blur-2xl group-hover:bg-brand-orange/30 transition-all duration-500"></div>
+              
+              <!-- Code / Metric Preview Header -->
+              <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+                <div class="flex items-center space-x-2">
+                  <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                </div>
+                <span class="text-xs font-mono text-slate-400">pixelcraft-metrics.live</span>
+              </div>
+
+              <!-- Main Hero Graphic Mockup Content -->
+              <div class="space-y-4">
+                <div class="p-4 rounded-xl bg-brand-navy/80 border border-white/5 flex items-center justify-between">
+                  <div>
+                    <p class="text-xs font-medium text-brand-muted">Quarterly Organic Growth</p>
+                    <h3 class="text-2xl font-bold font-heading text-white mt-0.5">+348.6%</h3>
+                  </div>
+                  <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line-up text-xl"></i>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-brand-navy/80 border border-white/5 flex items-center justify-between">
+                  <div>
+                    <p class="text-xs font-medium text-brand-muted">Performance & SEO Score</p>
+                    <h3 class="text-2xl font-bold font-heading text-brand-orange mt-0.5">100 / 100</h3>
+                  </div>
+                  <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                    <i class="fa-solid fa-gauge-high text-xl"></i>
+                  </div>
+                </div>
+
+                <!-- Live Tag Cloud -->
+                <div class="pt-2">
+                  <p class="text-xs text-brand-muted mb-2 font-mono">// Tech Stack Excellence</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-xs rounded-md bg-white/5 border border-white/10 text-slate-300">Next.js 15</span>
+                    <span class="px-2.5 py-1 text-xs rounded-md bg-white/5 border border-white/10 text-slate-300">TailwindCSS</span>
+                    <span class="px-2.5 py-1 text-xs rounded-md bg-white/5 border border-white/10 text-slate-300">Technical SEO</span>
+                    <span class="px-2.5 py-1 text-xs rounded-md bg-white/5 border border-white/10 text-slate-300">Figma UI</span>
+                    <span class="px-2.5 py-1 text-xs rounded-md bg-white/5 border border-white/10 text-slate-300">Cloudflare</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Sub-badge -->
+              <div class="mt-6 p-3 rounded-lg bg-white/5 border border-white/10 flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-orange-500/20 text-brand-orange flex items-center justify-center shrink-0">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <p class="text-xs text-slate-300 leading-tight">
+                  <strong class="text-white">Active Launch Status:</strong> All deployed client pipelines are fully optimized & operational.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Decorative floating pill -->
+            <div class="absolute -bottom-5 -left-4 sm:-left-8 px-4 py-2.5 rounded-xl glass-card border border-brand-orange/30 shadow-glow-orange flex items-center gap-3 animate-bounce" style="animation-duration: 4s;">
+              <span class="text-brand-orange text-lg"><i class="fa-solid fa-award"></i></span>
+              <div class="text-left">
+                <p class="text-xs font-bold text-white leading-tight">Clutch Top B2B Agency</p>
+                <p class="text-[10px] text-brand-muted">Global Leader 2026</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Key Stats Counter Grid -->
+      <div class="mt-16 sm:mt-24 pt-10 border-t border-brand-border grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div class="p-4 rounded-xl bg-white/[0.02]">
+          <h4 class="font-heading text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="150">150</span>+</h4>
+          <p class="text-xs sm:text-sm text-brand-muted mt-1 uppercase font-semibold tracking-wider">Projects Delivered</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white/[0.02]">
+          <h4 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-orange"><span class="counter" data-target="98">98</span>%</h4>
+          <p class="text-xs sm:text-sm text-brand-muted mt-1 uppercase font-semibold tracking-wider">Client Retention</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white/[0.02]">
+          <h4 class="font-heading text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="14">14</span>+</h4>
+          <p class="text-xs sm:text-sm text-brand-muted mt-1 uppercase font-semibold tracking-wider">Industry Awards</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white/[0.02]">
+          <h4 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-orange"><span class="counter" data-target="5">5</span>x</h4>
+          <p class="text-xs sm:text-sm text-brand-muted mt-1 uppercase font-semibold tracking-wider">Average Client ROI</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== ABOUT US SECTION ==================== -->
+  <section id="about" class="py-24 bg-brand-navy/40 relative border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Side Imagery / Brand Visuals -->
+        <div class="lg:col-span-6 relative">
+          <div class="relative mx-auto rounded-2xl overflow-hidden glass-card p-3 shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" 
+              alt="PixelCraft Studio Creative Strategy Team" 
+              class="w-full h-80 sm:h-96 object-cover rounded-xl"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=PixelCraft+Studio+Team'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl glass-card border border-white/10">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center text-xl shrink-0">
+                  <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-heading font-bold text-base">Human Centric, Tech Powered</h4>
+                  <p class="text-xs text-brand-muted">Crafting scalable digital ecosystems since 2018.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Experience Badge -->
+          <div class="absolute -top-6 -right-4 sm:-right-6 w-28 h-28 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-600 text-white flex flex-col items-center justify-center shadow-glow-orange p-2 text-center rotate-3 hover:rotate-0 transition-transform">
+            <span class="text-2xl font-black font-heading leading-none">8+</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider mt-1">Years of<br>Excellence</span>
+          </div>
+        </div>
+
+        <!-- Right Side Narrative -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-semibold uppercase tracking-wider">
+            Who We Are
+          </div>
+
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            We bridge the gap between creative artistry and business ROI.
+          </h2>
+
+          <p class="text-slate-300 text-base leading-relaxed">
+            At <strong>PixelCraft Studio</strong>, we are a hybrid collective of senior developers, creative art directors, SEO analysts, and conversion architects. We do not just build websites; we engineer end-to-end digital assets designed to dominate search rankings, engage modern consumers, and accelerate customer acquisition.
+          </p>
+
+          <p class="text-brand-muted text-sm leading-relaxed">
+            From modern headless e-commerce architectures to hyper-targeted performance marketing campaigns, our agile methodology ensures lightning speed execution with bulletproof code quality and transparent reporting.
+          </p>
+
+          <!-- Pillars Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
+            <div class="p-4 rounded-xl bg-brand-surface/70 border border-brand-border flex items-start gap-3">
+              <i class="fa-solid fa-code text-brand-orange text-lg mt-1"></i>
+              <div>
+                <h4 class="font-bold text-white text-sm">Clean Scalable Code</h4>
+                <p class="text-xs text-brand-muted mt-1">Component-driven architectures ensuring rapid scaling and zero tech debt.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-brand-surface/70 border border-brand-border flex items-start gap-3">
+              <i class="fa-solid fa-bullseye-arrow text-brand-orange text-lg mt-1"></i>
+              <div>
+                <h4 class="font-bold text-white text-sm">Outcome Driven</h4>
+                <p class="text-xs text-brand-muted mt-1">Every design decision is rooted in user behavioral data and ROI benchmarks.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href="#services" class="inline-flex items-center gap-2 text-brand-orange hover:text-white font-semibold text-sm transition-colors group">
+              <span>Learn how our methodology works</span>
+              <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== SERVICES SECTION ==================== -->
+  <section id="services" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider">
+          Our Specializations
+        </div>
+        <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Comprehensive Digital Services For High-Growth Brands
+        </h2>
+        <p class="text-brand-muted text-base sm:text-lg">
+          Integrated digital capabilities tailored to help modern enterprises outpace competitors in traffic, visual prestige, and sustainable customer lifetime value.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Service 1: Custom Web & App Dev -->
+        <div class="glass-card rounded-2xl p-8 hover:border-brand-orange/40 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-3 group-hover:text-brand-orange transition-colors">
+              Custom Web & App Development
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-6">
+              Lightning-fast, mobile-first web applications engineered with Next.js, React, Node.js, and headless CMS frameworks. Fully secure and built for 99.9% uptime.
+            </p>
+          </div>
+          <div>
+            <ul class="text-xs text-slate-300 space-y-2 pb-6 border-b border-brand-border">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Full-Stack Web Applications</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Shopify & Headless E-commerce</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> API & Cloud Integrations</li>
+            </ul>
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-white pt-4 transition-colors">
+              <span>Discuss Web Project</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 2: SEO & Growth Hacking -->
+        <div class="glass-card rounded-2xl p-8 hover:border-brand-orange/40 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-3 group-hover:text-brand-orange transition-colors">
+              Technical SEO & Growth
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-6">
+              Dominate organic Google rankings with scientific keyword mapping, core web vitals speed optimization, topical authority clusters, and authoritative backlink acquisition.
+            </p>
+          </div>
+          <div>
+            <ul class="text-xs text-slate-300 space-y-2 pb-6 border-b border-brand-border">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Technical Audits & Architecture</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> High-Intent Keyword Strategy</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Local & International SEO</li>
+            </ul>
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-white pt-4 transition-colors">
+              <span>Explore SEO Growth</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3: Strategic Branding & Identity -->
+        <div class="glass-card rounded-2xl p-8 hover:border-brand-orange/40 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-3 group-hover:text-brand-orange transition-colors">
+              Strategic Branding & Identity
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-6">
+              Create an iconic, memorable corporate presence. We craft cohesive logo designs, distinctive brand typography, color palettes, and comprehensive brand guideline kits.
+            </p>
+          </div>
+          <div>
+            <ul class="text-xs text-slate-300 space-y-2 pb-6 border-b border-brand-border">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Brand Positioning & Voice</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Logo Suites & Iconography</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Complete Brand Styleguides</li>
+            </ul>
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-white pt-4 transition-colors">
+              <span>Build Your Brand</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 4: UI/UX & Graphic Design -->
+        <div class="glass-card rounded-2xl p-8 hover:border-brand-orange/40 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+              <i class="fa-solid fa-vector-square"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-3 group-hover:text-brand-orange transition-colors">
+              UI/UX & Graphic Design
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-6">
+              Intuitive interfaces engineered for frictionless user journeys. We deliver high-fidelity prototypes, design systems, and creative marketing collateral that convert.
+            </p>
+          </div>
+          <div>
+            <ul class="text-xs text-slate-300 space-y-2 pb-6 border-b border-brand-border">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Wireframing & Interactive Prototypes</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> SaaS Design Systems in Figma</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Marketing & Social Creative Assets</li>
+            </ul>
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-white pt-4 transition-colors">
+              <span>View Design Scope</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 5: Full-Funnel Digital Marketing -->
+        <div class="glass-card rounded-2xl p-8 hover:border-brand-orange/40 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+              <i class="fa-solid fa-bullhorn"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-3 group-hover:text-brand-orange transition-colors">
+              Full-Funnel Digital Marketing
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-6">
+              Precision paid acquisition campaigns across Google Ads, Meta, and LinkedIn designed to lower customer acquisition costs (CAC) and scale qualified leads.
+            </p>
+          </div>
+          <div>
+            <ul class="text-xs text-slate-300 space-y-2 pb-6 border-b border-brand-border">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Paid Search & Social Ads (PPC)</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Omnichannel Retargeting</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Lead Funnel Automation</li>
+            </ul>
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-white pt-4 transition-colors">
+              <span>Scale Campaigns</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 6: Conversion Rate Optimization (CRO) -->
+        <div class="glass-card rounded-2xl p-8 hover:border-brand-orange/40 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+              <i class="fa-solid fa-filter-circle-dollar"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-3 group-hover:text-brand-orange transition-colors">
+              Conversion Optimization (CRO)
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-6">
+              Transform passive visitors into high-value paying customers through heatmap user tracking, rigorous A/B multivariate testing, and checkout funnel friction reduction.
+            </p>
+          </div>
+          <div>
+            <ul class="text-xs text-slate-300 space-y-2 pb-6 border-b border-brand-border">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> A/B Testing & Heatmap Analysis</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Checkout Funnel Refinement</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Behavioral UX Audits</li>
+            </ul>
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-white pt-4 transition-colors">
+              <span>Optimize Conversions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== PORTFOLIO SECTION ==================== -->
+  <section id="portfolio" class="py-24 bg-brand-navy/30 relative border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div class="max-w-xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3">
+            Selected Works
+          </div>
+          <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Our Digital Masterpieces
+          </h2>
+          <p class="text-brand-muted text-base mt-2">
+            A curated showcase of high-impact platforms, rebranding projects, and growth campaigns executed for global clients.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 p-1.5 rounded-xl glass-card self-start md:self-auto" id="portfolio-filters">
+          <button class="filter-btn active px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-brand-orange transition-all" data-filter="all">All</button>
+          <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-all" data-filter="web">Web & Apps</button>
+          <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-all" data-filter="branding">Branding</button>
+          <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-all" data-filter="marketing">Marketing</button>
+        </div>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+        
+        <!-- Project 1 (Web) -->
+        <div class="portfolio-item web glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/50 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+              alt="FinTech Analytics Dashboard" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=NovaPay+FinTech'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+              Web & App
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-orange transition-colors">NovaPay Global Platform</h3>
+            <p class="text-xs text-brand-muted mt-2 line-clamp-2">
+              Next-generation fintech web application featuring ultra-low latency transaction visualization, multi-currency wallets, and biometric security.
+            </p>
+            <div class="mt-4 pt-4 border-t border-brand-border flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-mono">React / Node / AWS</span>
+              <a href="#contact" class="text-brand-orange font-bold flex items-center gap-1 hover:underline">Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 (Branding) -->
+        <div class="portfolio-item branding glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/50 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80" 
+              alt="Artisan Roast Brand Identity" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=Aura+Identity'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+              Branding
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-orange transition-colors">Aura Wellness Collective</h3>
+            <p class="text-xs text-brand-muted mt-2 line-clamp-2">
+              Comprehensive brand rejuvenation, bespoke luxury packaging system, sustainable print collateral, and interactive design guidelines for modern wellness retail.
+            </p>
+            <div class="mt-4 pt-4 border-t border-brand-border flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-mono">Identity / Guidelines</span>
+              <a href="#contact" class="text-brand-orange font-bold flex items-center gap-1 hover:underline">Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 (Marketing) -->
+        <div class="portfolio-item marketing glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/50 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+              alt="E-commerce Growth Engine" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=Pulse+Growth'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+              Marketing & SEO
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-orange transition-colors">Pulse Gear 4.2x Scale</h3>
+            <p class="text-xs text-brand-muted mt-2 line-clamp-2">
+              Full-funnel Google Ads restructure combined with high-intent technical SEO clusters, lifting monthly organic revenue by 420% in 7 months.
+            </p>
+            <div class="mt-4 pt-4 border-t border-brand-border flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-mono">SEO / Meta Ads / CRO</span>
+              <a href="#contact" class="text-brand-orange font-bold flex items-center gap-1 hover:underline">Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 (Web) -->
+        <div class="portfolio-item web glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/50 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" 
+              alt="Modern Real Estate Portal" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=Apex+Estates'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+              Web & App
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-orange transition-colors">Apex Prime Real Estate</h3>
+            <p class="text-xs text-brand-muted mt-2 line-clamp-2">
+              Interactive property discovery platform featuring 3D virtual walkthroughs, neighborhood demographics API, and instant WhatsApp booking integration.
+            </p>
+            <div class="mt-4 pt-4 border-t border-brand-border flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-mono">Next.js / Mapbox / Tailwind</span>
+              <a href="#contact" class="text-brand-orange font-bold flex items-center gap-1 hover:underline">Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 (Branding) -->
+        <div class="portfolio-item branding glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/50 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=800&q=80" 
+              alt="SaaS Brand Identity" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=CloudSync'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+              Branding
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-orange transition-colors">CloudSync AI Systems</h3>
+            <p class="text-xs text-brand-muted mt-2 line-clamp-2">
+              Futuristic visual narrative, vector icon suites, 3D product motion graphics, and marketing site architecture for an enterprise DevOps automation SaaS.
+            </p>
+            <div class="mt-4 pt-4 border-t border-brand-border flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-mono">3D / Typography / Figma</span>
+              <a href="#contact" class="text-brand-orange font-bold flex items-center gap-1 hover:underline">Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 (Marketing) -->
+        <div class="portfolio-item marketing glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/50 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80" 
+              alt="Omnichannel Lead Generation" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/0B132B/FFFFFF?text=Vanguard+Capital'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+              Marketing
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-orange transition-colors">Vanguard Wealth Advisors</h3>
+            <p class="text-xs text-brand-muted mt-2 line-clamp-2">
+              Targeted high-net-worth client acquisition system utilizing hyper-segmented LinkedIn campaigns, gated research papers, and CRM automation funnels.
+            </p>
+            <div class="mt-4 pt-4 border-t border-brand-border flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-mono">LinkedIn / HubSpot / Funnels</span>
+              <a href="#contact" class="text-brand-orange font-bold flex items-center gap-1 hover:underline">Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== WHY CHOOSE US SECTION ==================== -->
+  <section id="why-us" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider">
+          The PixelCraft Advantage
+        </div>
+        <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Why Discerning Leaders Choose PixelCraft Studio
+        </h2>
+        <p class="text-brand-muted text-base sm:text-lg">
+          We combine the personalized attention of a boutique consultancy with the technical firepower and execution velocity of a world-class digital agency.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="glass-card rounded-2xl p-7 border-brand-border hover:border-brand-orange/40 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h3 class="text-lg font-heading font-bold text-white mb-2">Data-Backed Strategy</h3>
+          <p class="text-xs text-brand-muted leading-relaxed">
+            No guesswork. Every pixel, line of code, and marketing dollar is backed by thorough user data, competitor analysis, and proven conversion science.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border-brand-border hover:border-brand-orange/40 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="text-lg font-heading font-bold text-white mb-2">Total Transparency</h3>
+          <p class="text-xs text-brand-muted leading-relaxed">
+            Direct access to dedicated Slack channels, live Jira/Trello boards, real-time Looker Studio reporting, and zero hidden costs or vendor lock-in.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border-brand-border hover:border-brand-orange/40 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-users-gear"></i>
+          </div>
+          <h3 class="text-lg font-heading font-bold text-white mb-2">Dedicated Senior Squad</h3>
+          <p class="text-xs text-brand-muted leading-relaxed">
+            Work directly with seasoned senior creators and architects. You never get passed down to inexperienced interns or sub-contractors.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border-brand-border hover:border-brand-orange/40 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-brand-orange flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="text-lg font-heading font-bold text-white mb-2">24/7 SLA & Maintenance</h3>
+          <p class="text-xs text-brand-muted leading-relaxed">
+            Continuous cloud infrastructure monitoring, proactive automated backups, security patching, and swift emergency turnaround guarantees.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== PRICING PACKAGES ==================== -->
+  <section id="pricing" class="py-24 bg-brand-navy/40 relative border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider">
+          Predictable Investments
+        </div>
+        <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Transparent, ROI-Driven Packages
+        </h2>
+        <p class="text-brand-muted text-base sm:text-lg">
+          Choose a battle-tested tier built to match your current phase of market expansion, from startup launch to dominant enterprise scale.
+        </p>
+      </div>
+
+      <!-- Pricing Tier Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1: Starter Launchpad -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-brand-border hover:border-slate-500 transition-all duration-300">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-heading font-bold text-xl text-white">Starter Launchpad</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">Fast MVP</span>
+            </div>
+            <p class="text-xs text-brand-muted mb-6">
+              Ideal for new businesses, modern consultancies, and seed-funded startups requiring rapid market validation.
+            </p>
+            <div class="mb-6 pb-6 border-b border-brand-border">
+              <span class="text-4xl font-extrabold text-white font-heading">$1,499</span>
+              <span class="text-xs text-brand-muted"> / one-time or project</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-300 mb-8">
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Custom 5-Page Responsive Web Experience</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Essential Technical On-Page SEO Setup</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Core Brand Color Palette & Typography</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Contact Form & WhatsApp Integration</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Google Analytics 4 & Meta Pixel Setup</li>
+              <li class="flex items-center gap-3 text-slate-500"><i class="fa-solid fa-circle-xmark"></i> Advanced Headless Architecture</li>
+              <li class="flex items-center gap-3 text-slate-500"><i class="fa-solid fa-circle-xmark"></i> Dedicated Ad Campaign Management</li>
+            </ul>
+          </div>
+          <a href="#contact" class="w-full py-3.5 rounded-xl border border-white/20 text-white font-semibold text-xs uppercase tracking-wider text-center hover:bg-white/10 hover:border-white transition-all">
+            Get Started With Launchpad
+          </a>
+        </div>
+
+        <!-- Tier 2: Growth Accelerator (FEATURED / POPULAR) -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-2 border-brand-orange relative shadow-glow-orange scale-100 lg:-translate-y-2 bg-gradient-to-b from-brand-surface to-brand-navy">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-orange text-white text-[11px] font-extrabold uppercase tracking-widest shadow-md">
+            Most Popular & Recommended
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-4 mt-2">
+              <h3 class="font-heading font-bold text-xl text-white">Growth Accelerator</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-brand-orange/20 text-brand-orange font-semibold">Full Scale</span>
+            </div>
+            <p class="text-xs text-brand-muted mb-6">
+              Tailored for established organizations looking to dominate organic search rankings and 3x inbound conversions.
+            </p>
+            <div class="mb-6 pb-6 border-b border-brand-border">
+              <span class="text-4xl font-extrabold text-white font-heading">$3,499</span>
+              <span class="text-xs text-brand-muted"> / project or $1,999/mo</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-200 mb-8">
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Up to 15 Custom Pages / Dynamic Blog System</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Comprehensive Technical & Backlink SEO Plan</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Full Brand Identity System & Figma Files</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Conversion Rate Optimization (CRO) Setup</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> CMS Integration (Sanity / Strapi / WP)</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Bi-weekly Strategy & Ranking Reports</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Dedicated Slack Communication Channel</li>
+            </ul>
+          </div>
+          <a href="#contact" class="w-full py-4 rounded-xl bg-brand-orange hover:bg-brand-orangeHover text-white font-bold text-xs uppercase tracking-wider text-center shadow-lg transition-all hover:scale-[1.02]">
+            Accelerate My Brand
+          </a>
+        </div>
+
+        <!-- Tier 3: Enterprise Scale -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-brand-border hover:border-slate-500 transition-all duration-300">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-heading font-bold text-xl text-white">Enterprise Scale</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">Custom Dev</span>
+            </div>
+            <p class="text-xs text-brand-muted mb-6">
+              Complete bespoke omnichannel digital execution, custom enterprise SaaS interfaces, and multi-country marketing.
+            </p>
+            <div class="mb-6 pb-6 border-b border-brand-border">
+              <span class="text-4xl font-extrabold text-white font-heading">$6,999+</span>
+              <span class="text-xs text-brand-muted"> / tailored contract</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-300 mb-8">
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Infinite Scalability & Headless Microservices</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Omnichannel Paid Media (Google + Meta + LinkedIn)</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> High-Touch Weekly Sprint Reviews</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Custom CRM & ERP API Engineering</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> 24/7 SLA Priority Technical Support</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Dedicated Art Director & Principal Architect</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-orange"></i> Quarterly Conversion Audits</li>
+            </ul>
+          </div>
+          <a href="#contact" class="w-full py-3.5 rounded-xl border border-white/20 text-white font-semibold text-xs uppercase tracking-wider text-center hover:bg-white/10 hover:border-white transition-all">
+            Schedule Enterprise Consultation
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== TESTIMONIALS SECTION ==================== -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider">
+          Client Feedback
+        </div>
+        <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Trusted By Industry Pioneers
+        </h2>
+        <p class="text-brand-muted text-base">
+          Read candid reviews from executives, founders, and marketing leaders who partnered with PixelCraft Studio to scale their digital footprint.
+        </p>
+      </div>
+
+      <!-- Testimonial Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Testimonial 1 -->
+        <div class="glass-card rounded-2xl p-8 border-brand-border flex flex-col justify-between relative group hover:border-brand-orange/40 transition-colors">
+          <div class="space-y-4">
+            <div class="flex text-brand-orange text-sm gap-1">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed italic">
+              "PixelCraft Studio revamped our entire SaaS dashboard and marketing website. Within 90 days of launch, our inbound organic demo requests skyrocketed by 210%. Their team is deeply analytical, responsive, and insanely fast."
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-6 mt-6 border-t border-brand-border">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" 
+              alt="Elena Rostova" 
+              class="w-12 h-12 rounded-full object-cover border-2 border-brand-orange"
+              onerror="this.src='https://placehold.co/100x100/FF6B35/FFFFFF?text=ER'"
+            />
+            <div>
+              <h4 class="font-heading font-bold text-sm text-white">Elena Rostova</h4>
+              <p class="text-xs text-brand-muted">VP of Growth, FinScale AI</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="glass-card rounded-2xl p-8 border-brand-border flex flex-col justify-between relative group hover:border-brand-orange/40 transition-colors">
+          <div class="space-y-4">
+            <div class="flex text-brand-orange text-sm gap-1">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed italic">
+              "Finding an agency that truly grasps technical SEO alongside high-end UI design is rare. PixelCraft resolved critical architectural bottlenecks and took us from page 5 to position #1 for our most competitive industry terms."
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-6 mt-6 border-t border-brand-border">
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" 
+              alt="Marcus Vance" 
+              class="w-12 h-12 rounded-full object-cover border-2 border-brand-orange"
+              onerror="this.src='https://placehold.co/100x100/FF6B35/FFFFFF?text=MV'"
+            />
+            <div>
+              <h4 class="font-heading font-bold text-sm text-white">Marcus Vance</h4>
+              <p class="text-xs text-brand-muted">Founder & CEO, Apex Logistics</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="glass-card rounded-2xl p-8 border-brand-border flex flex-col justify-between relative group hover:border-brand-orange/40 transition-colors">
+          <div class="space-y-4">
+            <div class="flex text-brand-orange text-sm gap-1">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed italic">
+              "The branding package delivered by PixelCraft Studio gave our e-commerce luxury collection the sophistication it deserved. Our average order value rose by 44% immediately following the website redesign rollout."
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-6 mt-6 border-t border-brand-border">
+            <img 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" 
+              alt="Sophia Chen" 
+              class="w-12 h-12 rounded-full object-cover border-2 border-brand-orange"
+              onerror="this.src='https://placehold.co/100x100/FF6B35/FFFFFF?text=SC'"
+            />
+            <div>
+              <h4 class="font-heading font-bold text-sm text-white">Sophia Chen</h4>
+              <p class="text-xs text-brand-muted">Managing Director, Lumina Living</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== BLOG & INSIGHTS SECTION ==================== -->
+  <section id="blog" class="py-24 bg-brand-navy/30 relative border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3">
+            Knowledge Hub
+          </div>
+          <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Latest Digital Insights
+          </h2>
+          <p class="text-brand-muted text-base mt-2">
+            Actionable strategies on modern web design, technical search optimization, and brand scaling.
+          </p>
+        </div>
+        <a href="#contact" class="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-brand-orange hover:text-white transition-colors">
+          <span>Subscribe to Agency Newsletter</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Blog Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Article 1 -->
+        <article class="glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/40 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=700&q=80" 
+                alt="Web performance metrics" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                onerror="this.src='https://placehold.co/700x400/0B132B/FFFFFF?text=Web+Performance'"
+              />
+              <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+                SEO & Performance
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-brand-muted mb-3">
+                <span><i class="fa-regular fa-clock mr-1"></i> 6 min read</span>
+                <span>•</span>
+                <span>Oct 28, 2026</span>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white group-hover:text-brand-orange transition-colors">
+                How Sub-Second Page Speed Directly Impacts E-commerce Conversion Rates
+              </h3>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">
+                A breakdown of Core Web Vitals, how image payload optimizations reduce cart abandonment, and benchmarks for 2026 search index ranking algorithms.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-brand-orange hover:text-white transition-colors">
+              <span>Read Full Article</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/40 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=80" 
+                alt="Design Systems & UX" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                onerror="this.src='https://placehold.co/700x400/0B132B/FFFFFF?text=Design+Systems'"
+              />
+              <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+                UI/UX Design
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-brand-muted mb-3">
+                <span><i class="fa-regular fa-clock mr-1"></i> 8 min read</span>
+                <span>•</span>
+                <span>Oct 19, 2026</span>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white group-hover:text-brand-orange transition-colors">
+                The Anatomy of a Modern SaaS Design System: From Figma to React Tokens
+              </h3>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">
+                Discover why design tokens accelerate engineering velocity by 40% and eliminate visual inconsistencies across web, iOS, and enterprise portals.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-brand-orange hover:text-white transition-colors">
+              <span>Read Full Article</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="glass-card rounded-2xl overflow-hidden group hover:border-brand-orange/40 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=700&q=80" 
+                alt="Branding Strategy & Growth" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                onerror="this.src='https://placehold.co/700x400/0B132B/FFFFFF?text=Brand+Strategy'"
+              />
+              <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-brand-dark/90 text-brand-orange border border-brand-orange/30">
+                Branding & ROI
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-brand-muted mb-3">
+                <span><i class="fa-regular fa-clock mr-1"></i> 5 min read</span>
+                <span>•</span>
+                <span>Oct 11, 2026</span>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white group-hover:text-brand-orange transition-colors">
+                Brand Repositioning: When Should High-Growth Companies Modernize Identity?
+              </h3>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">
+                Practical signs that your current branding is repelling tier-1 enterprise prospects, and how a strategic visual overhaul sparks renewed organic interest.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-brand-orange hover:text-white transition-colors">
+              <span>Read Full Article</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== CONTACT SECTION & FORM ==================== -->
+  <section id="contact" class="py-24 relative overflow-hidden border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Column: Agency Information & Coordinates -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider mb-4">
+              Let's Connect
+            </div>
+            <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              Ready To Build Something Extraordinary?
+            </h2>
+            <p class="text-brand-muted text-base mt-4">
+              Have an ambitious project or want to audit your current digital performance? Fill out the brief or reach out directly to our principal strategists.
+            </p>
+          </div>
+
+          <!-- Contact Details Cards -->
+          <div class="space-y-4">
+            
+            <div class="p-4 rounded-xl glass-card flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-orange/15 text-brand-orange flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <p class="text-xs text-brand-muted">Direct Email</p>
+                <a href="mailto:hello@pixelcraftstudio.com" class="text-white font-semibold text-sm hover:text-brand-orange transition-colors">hello@pixelcraftstudio.com</a>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-orange/15 text-brand-orange flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-phone-volume"></i>
+              </div>
+              <div>
+                <p class="text-xs text-brand-muted">Phone & Consultation Desk</p>
+                <a href="tel:+18005559823" class="text-white font-semibold text-sm hover:text-brand-orange transition-colors">+1 (800) 555-PIXEL / +91 98290 12345</a>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-orange/15 text-brand-orange flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <p class="text-xs text-brand-muted">Studio HQ</p>
+                <p class="text-white font-semibold text-sm">Level 6, Horizon Tech Hub, Cyber City & Bangalore Tech Park</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Working Hours & Guarantee -->
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-slate-300 space-y-1">
+            <p class="font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-clock text-brand-orange"></i> Average Response Time: Under 2 Hours
+            </p>
+            <p class="text-brand-muted">Mon – Fri: 9:00 AM – 7:00 PM (EST / IST Coverage)</p>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="glass-card rounded-3xl p-8 sm:p-10 shadow-2xl relative border-brand-border">
+            
+            <h3 class="font-heading font-bold text-2xl text-white mb-2">Send Us a Project Brief</h3>
+            <p class="text-xs text-brand-muted mb-8">We treat every submission with strict NDA discretion and reply with actionable preliminary thoughts.</p>
+
+            <form id="contact-form" class="space-y-6">
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Name -->
+                <div>
+                  <label for="name" class="block text-xs font-semibold text-slate-200 uppercase tracking-wider mb-2">Your Name *</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    placeholder="e.g. Alexander Mitchell"
+                    class="w-full px-4 py-3.5 rounded-xl bg-brand-navy/90 border border-brand-border text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                  />
+                </div>
+
+                <!-- Email -->
+                <div>
+                  <label for="email" class="block text-xs font-semibold text-slate-200 uppercase tracking-wider mb-2">Corporate Email *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="alex@company.com"
+                    class="w-full px-4 py-3.5 rounded-xl bg-brand-navy/90 border border-brand-border text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Phone -->
+                <div>
+                  <label for="phone" class="block text-xs font-semibold text-slate-200 uppercase tracking-wider mb-2">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="+1 (555) 019-2834"
+                    class="w-full px-4 py-3.5 rounded-xl bg-brand-navy/90 border border-brand-border text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                  />
+                </div>
+
+                <!-- Services Needed -->
+                <div>
+                  <label for="service" class="block text-xs font-semibold text-slate-200 uppercase tracking-wider mb-2">Primary Interest</label>
+                  <select 
+                    id="service" 
+                    name="service"
+                    class="w-full px-4 py-3.5 rounded-xl bg-brand-navy/90 border border-brand-border text-white text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                  >
+                    <option value="Custom Web Development" class="bg-brand-navy">Custom Web Development</option>
+                    <option value="SEO & Organic Growth" class="bg-brand-navy">SEO & Organic Growth</option>
+                    <option value="Brand Identity & Design" class="bg-brand-navy">Brand Identity & Design</option>
+                    <option value="Paid Digital Marketing" class="bg-brand-navy">Paid Digital Marketing</option>
+                    <option value="Complete Agency Retainer" class="bg-brand-navy">Complete Agency Retainer</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block text-xs font-semibold text-slate-200 uppercase tracking-wider mb-2">Project Vision & Goals *</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="4" 
+                  required 
+                  placeholder="Tell us about your timeline, current hurdles, and target objectives..."
+                  class="w-full px-4 py-3.5 rounded-xl bg-brand-navy/90 border border-brand-border text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all resize-y"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div>
+                <button 
+                  type="submit" 
+                  id="submit-btn"
+                  class="w-full py-4 rounded-xl bg-brand-orange hover:bg-brand-orangeHover text-white font-bold text-sm tracking-wide shadow-glow-orange hover:scale-[1.01] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span id="btn-text">Submit Project Proposal</span>
+                  <i class="fa-solid fa-paper-plane text-xs" id="btn-icon"></i>
+                </button>
+              </div>
+
+            </form>
+
+            <!-- Interactive Toast Message for Success (In-place) -->
+            <div id="toast-message" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-lg shrink-0 text-emerald-400"></i>
+              <div>
+                <p class="font-bold text-white text-sm">Thank You! Your Brief Has Been Received.</p>
+                <p class="mt-0.5">Our Senior Strategy Director is reviewing your notes. Expect a personalized response within 2 hours.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+  <aside aria-label="Quick WhatsApp Contact" class="fixed bottom-6 right-6 z-40 flex items-center group">
+    <!-- Tooltip -->
+    <div class="hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-3 px-3 py-1.5 rounded-lg bg-slate-900 border border-brand-border text-white text-xs font-medium shadow-xl pointer-events-none whitespace-nowrap">
+      Chat with an Expert on WhatsApp
+    </div>
+    
+    <!-- Floating Circular Button -->
+    <a 
+      href="https://wa.me/18005559823?text=Hi%20PixelCraft%20Studio!%20I%20would%20like%20to%20discuss%20a%20new%20digital%20project." 
+      target="_blank" 
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+      class="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center text-2xl shadow-2xl whatsapp-pulse hover:scale-110 transition-transform duration-300"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </aside>
+
+
+  <!-- ==================== COMPREHENSIVE FOOTER ==================== -->
+  <footer class="bg-brand-dark pt-16 pb-12 border-t border-brand-border relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-14 border-b border-white/5">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="#home" class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 flex items-center justify-center text-white shadow-glow-orange">
+              <i class="fa-solid fa-shapes text-lg"></i>
+            </div>
+            <span class="font-heading font-extrabold text-xl tracking-tight text-white">
+              PixelCraft<span class="text-brand-orange">.</span>
+            </span>
+          </a>
+          <p class="text-xs text-brand-muted leading-relaxed max-w-sm">
+            PixelCraft Studio is an elite global digital agency specializing in high-performance web development, technical search optimization, brand identity design, and conversion scaling.
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs" aria-label="Twitter">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs" aria-label="Dribbble">
+              <i class="fa-brands fa-dribbble"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="lg:col-span-2 space-y-3">
+          <p class="text-xs font-bold font-heading text-white uppercase tracking-wider">Navigation</p>
+          <ul class="space-y-2 text-xs text-brand-muted">
+            <li><a href="#home" class="hover:text-brand-orange transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Services</a></li>
+            <li><a href="#portfolio" class="hover:text-brand-orange transition-colors">Portfolio</a></li>
+            <li><a href="#pricing" class="hover:text-brand-orange transition-colors">Pricing Plans</a></li>
+            <li><a href="#blog" class="hover:text-brand-orange transition-colors">Industry Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Services Links -->
+        <div class="lg:col-span-3 space-y-3">
+          <p class="text-xs font-bold font-heading text-white uppercase tracking-wider">Capabilities</p>
+          <ul class="space-y-2 text-xs text-brand-muted">
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Headless Web & App Dev</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Technical SEO & Audits</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Brand Identity Guidelines</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">UI/UX Systems & Prototyping</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Performance Marketing (PPC)</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">CRO & Funnel Optimization</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="lg:col-span-3 space-y-3">
+          <p class="text-xs font-bold font-heading text-white uppercase tracking-wider">Studio Dispatch</p>
+          <p class="text-xs text-brand-muted">Join 6,400+ tech leaders receiving our monthly breakdown of digital breakthroughs and conversion frameworks.</p>
+          
+          <form id="newsletter-form" class="space-y-2">
+            <div class="flex">
+              <input 
+                type="email" 
+                placeholder="your.email@company.com" 
+                required
+                class="w-full px-3 py-2 text-xs rounded-l-lg bg-brand-surface border border-brand-border text-white focus:outline-none focus:border-brand-orange"
+              />
+              <button 
+                type="submit" 
+                class="px-4 py-2 bg-brand-orange hover:bg-brand-orangeHover text-white rounded-r-lg text-xs font-semibold transition-colors"
+              >
+                Join
+              </button>
+            </div>
+            <p id="newsletter-msg" class="text-[10px] text-emerald-400 hidden">Subscribed successfully! Welcome aboard.</p>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 PixelCraft Studio LLC. All rights reserved.</p>
+        
+        <div class="flex items-center space-x-6">
+          <a href="#contact" class="hover:text-brand-muted transition-colors">Privacy Policy</a>
+          <a href="#contact" class="hover:text-brand-muted transition-colors">Terms of Service</a>
+          <a href="#home" class="inline-flex items-center gap-1.5 text-brand-orange hover:text-white transition-colors">
+            <span>Back to top</span>
+            <i class="fa-solid fa-arrow-up text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    // --- Mobile Hamburger Menu Toggle ---
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenu.classList.toggle('hidden');
+      if (!isExpanded) {
+        menuIcon.classList.remove('fa-bars-staggered');
+        menuIcon.classList.add('fa-xmark');
+      } else {
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars-staggered');
+      }
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars-staggered');
+      });
+    });
+
+    // --- Dynamic Navbar Background on Scroll ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('shadow-xl', 'bg-brand-dark/95');
+      } else {
+        navbar.classList.remove('shadow-xl', 'bg-brand-dark/95');
+      }
+    });
+
+    // --- Interactive Portfolio Category Filtering ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Toggle button states
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-brand-orange', 'text-white');
+          btn.classList.add('text-slate-300');
+        });
+        button.classList.add('active', 'bg-brand-orange', 'text-white');
+        button.classList.remove('text-slate-300');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.classList.contains(filterValue)) {
+            item.style.display = 'flex';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 200);
+          }
+        });
+      });
+    });
+
+    // --- Counter Animation for Key Stats ---
+    const counters = document.querySelectorAll('.counter');
+    let animated = false;
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const speed = target / 35; // Increment speed
+
+        const updateCount = () => {
+          count += speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count);
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+
+    window.addEventListener('scroll', () => {
+      const statsSection = document.querySelector('.counter');
+      if (!statsSection) return;
+      const rect = statsSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight && !animated) {
+        animateCounters();
+        animated = true;
+      }
+    });
+
+    // --- Contact Form Submission Handling & Feedback ---
+    const contactForm = document.getElementById('contact-form');
+    const toast = document.getElementById('toast-message');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Simulate Loading State
+      btnText.innerText = "Transmitting Brief...";
+      btnIcon.className = "fa-solid fa-spinner fa-spin text-xs";
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        // Reset button
+        btnText.innerText = "Proposal Submitted Successfully";
+        btnIcon.className = "fa-solid fa-check text-xs";
+        submitBtn.classList.remove('bg-brand-orange', 'hover:bg-brand-orangeHover');
+        submitBtn.classList.add('bg-emerald-600');
+
+        // Reveal Toast
+        toast.classList.remove('hidden');
+        contactForm.reset();
+
+        // Reset button state after 5 seconds
+        setTimeout(() => {
+          btnText.innerText = "Submit Another Proposal";
+          btnIcon.className = "fa-solid fa-paper-plane text-xs";
+          submitBtn.classList.remove('bg-emerald-600');
+          submitBtn.classList.add('bg-brand-orange', 'hover:bg-brand-orangeHover');
+          submitBtn.disabled = false;
+        }, 5000);
+
+      }, 1000);
+    });
+
+    // --- Newsletter Form Feedback ---
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterMsg = document.getElementById('newsletter-msg');
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      newsletterMsg.classList.remove('hidden');
+      newsletterForm.reset();
+      setTimeout(() => {
+        newsletterMsg.classList.add('hidden');
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
